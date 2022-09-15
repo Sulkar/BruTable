@@ -1,9 +1,9 @@
 import "./style/index.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import $ from "jquery";
-import "bootstrap";
+import { Modal } from "bootstrap";
 
-let TEST_DATA = [
+let TEST_PERSON_DATA = [
   { name: "Richi", noOptions: ["1_2", "3_1", "4_1"], onlyOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1 },
   { name: "Susi", noOptions: ["1_1", "3_1", "1_2", "4_1"], onlyOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1 },
   { name: "Kerstin", noOptions: ["1_1", "3_2"], onlyOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1 },
@@ -43,10 +43,37 @@ $(function () {
   startFillTable();
 });
 
+$("#btnImportExportModalDeleteData").on("click", function () {
+  $("#textareaImportExportModal").val("");
+  $("#textareaImportExportModal").select();
+});
+
+$("#btnImportExportModalCopyData").on("click", function () {
+  const currentTextareaValue = $("#textareaImportExportModal").val();
+  copyToClipboardAsync(currentTextareaValue);
+  $("#textareaImportExportModal").select();
+});
+const copyToClipboardAsync = (str) => {
+  if (navigator && navigator.clipboard && navigator.clipboard.writeText) return navigator.clipboard.writeText(str);
+  return Promise.reject("The Clipboard API is not available.");
+};
+
+$("#btnImportExportData").on("click", function () {
+  const currentCellValuesJSON = JSON.stringify(BEST_ATTEMPT.cellArray);
+  $("#textareaImportExportModal").val(currentCellValuesJSON);
+});
+//btn modal load data
+$("#btnImportExportModalLoadData").on("click", function () {
+  const currentTextareaValue = $("#textareaImportExportModal").val();
+  const currentCellValues = JSON.parse(currentTextareaValue);
+  fillTableWithCellArray(currentCellValues);
+  highlightAllEmptyTableCells(["cell"]);
+});
+
 //{ name: "Jojo", noOptions: [], onlyOptions: ["3_3"], count: 0, maxCount: 2, days: [], maxPerDay: 1 },
 $("#btnListData").on("click", function () {
   let tempValues = getValuesFromTable(["cell"]);
-  let tempData = updateDataWithTableValues(TEST_DATA, tempValues);
+  let tempData = updateDataWithTableValues(TEST_PERSON_DATA, tempValues);
   $("#listData").html(createListDataTable(tempData));
 });
 
@@ -91,6 +118,7 @@ function startFillTable() {
   //start loop
   fillTableLoop(LOOP_NUMBER, 500).then(function () {
     fillTableWithCellArray(BEST_ATTEMPT.cellArray);
+    highlightAllEmptyTableCells(["cell"]);
     //display result
     const endTime = Date.now();
     const executionTime = endTime - startTime;
@@ -128,6 +156,8 @@ function createTable(tableData) {
 function createListDataTable(data) {
   let tempHeader = "<h4>ListData Table</h4>";
   let tempTable = "<table class='table' id='dataList'>";
+  let tempNrToDayMap = { 1: "Mo", 2: "Di", 3: "Mi", 4: "Do", 5: "Fr" };
+  //let tempNrToPauseMap =
   //header
   tempTable += "<thead>";
   tempTable += "<tr>";
@@ -146,12 +176,26 @@ function createListDataTable(data) {
     tempTable += "<tr>";
 
     tempTable += "<td class=''>" + row.name + "</td>";
-    tempTable += "<td class=''>" + row.noOptions.map((noOPtion) => " " + noOPtion).toString() + "</td>";
-    tempTable += "<td class=''>" + row.onlyOptions.map((onlyOption) => " " + onlyOption).toString() + "</td>";
+    let tempNoOptionString = row.noOptions
+      .map((noOPtion) => " " + tempNrToDayMap[noOPtion.split("_")[1]] + noOPtion.split("_")[0])
+      .sort()
+      .toString();
+    let tempOnlyOptionsString = row.onlyOptions
+      .map((onlyOption) => " " + tempNrToDayMap[onlyOption.split("_")[1]] + onlyOption.split("_")[0])
+      .sort()
+      .toString();
+    tempTable += "<td class=''>" + tempNoOptionString + "</td>";
+    tempTable += "<td class=''>" + tempOnlyOptionsString + "</td>";
 
-    tempTable += "<td class=''>" + row.count + "</td>";
+    if (row.count < row.maxCount) {
+      tempTable += "<td class='noMaxCount'>" + row.count + "</td>";
+    } else {
+      tempTable += "<td class=''>" + row.count + "</td>";
+    }
+
     tempTable += "<td class=''>" + row.maxCount + "</td>";
-    tempTable += "<td class=''>" + row.days.map((day) => " " + day).toString() + "</td>";
+
+    tempTable += "<td class=''>" + row.days.map((day) => " " + tempNrToDayMap[day]).toString() + "</td>";
     tempTable += "<td class=''>" + row.maxPerDay + "</td>";
     tempTable += "</tr>";
   });
@@ -179,6 +223,17 @@ function getAllEmptyTableCells() {
   return allEmptyCellArray;
 }
 
+function highlightAllEmptyTableCells(typesArray) {
+  typesArray.forEach((type) => {
+    $("." + type).each(function () {
+      $(this).removeClass("emptyCell");
+      if (isCellObjectEmpty($(this))) {
+        $(this).addClass("emptyCell");
+      }
+    });
+  });
+}
+
 //function fill table based on cell array
 function fillTableWithCellArray(cellArray) {
   cellArray.forEach((cell) => {
@@ -199,22 +254,25 @@ function getValuesFromTable(typesArray) {
   let dataCellsArray = [];
   typesArray.forEach((type) => {
     $("." + type).each(function () {
-      dataCellsArray.push($(this).html());
+      let tempRow = $(this).attr("id").split("_")[1];
+      let tempColumn = $(this).attr("id").split("_")[2];
+      dataCellsArray.push({ row: tempRow, column: tempColumn, name: $(this).html() });
     });
   });
   return dataCellsArray;
 }
 
-function updateDataWithTableValues(data, tableValues) {
-  const dataCopy = structuredClone(data);
-  dataCopy.forEach((row) => {
+function updateDataWithTableValues(personData, tableValues) {
+  const personDataCopy = structuredClone(personData);
+  personDataCopy.forEach((person) => {
     tableValues.forEach((value) => {
-      if (row.name == value) {
-        row.count = row.count + 1;
+      if (person.name == value.name) {
+        person.count = person.count + 1;
+        person.days.push(value.column);
       }
     });
   });
-  return dataCopy;
+  return personDataCopy;
 }
 
 function countEmptyMetaTableCells(tableMetaData) {
@@ -297,7 +355,7 @@ function printMetaData(tableMetaData) {
 async function fillTableLoop(maxAttempts, updateUiEveryNCounts) {
   while (COUNTER < maxAttempts) {
     COUNTER++;
-    let tempSolution = autoFillTableMeta(META_DATA_CELLS_ARRAY, TEST_DATA);
+    let tempSolution = autoFillTableMeta(META_DATA_CELLS_ARRAY, TEST_PERSON_DATA);
     let tempEmptyCells = countEmptyMetaTableCells(tempSolution);
     if (BEST_ATTEMPT.emptyCells == undefined || BEST_ATTEMPT.emptyCells >= tempEmptyCells) {
       BEST_ATTEMPT.cellArray = tempSolution;
