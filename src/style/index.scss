@@ -1,7 +1,11 @@
 .cellBold {
+  font-weight: bolder;
+  background-color: lightgrey !important;
+}
+.cell,
+.firstCol_cell {
   font-weight: bold;
 }
-
 .cellGreen {
   color: green;
 }
@@ -14,4 +18,7 @@
 .emptyCell,
 .noMaxCount {
   background-color: #ffd1d9 !important;
+}
+.highlightCell {
+  background-color: lightgreen !important;
 }

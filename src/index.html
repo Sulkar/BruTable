@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Getting Started</title>
+    <title>BruTable</title>
 </head>
 
 <body>
@@ -14,14 +14,17 @@
             <div class="col-1">
                 <button type="button" class="btn btn-secondary" id="btnDebug">debug</button>
             </div>
-            <div class="col-4">
+            <div class="col">
                 <div class="row">
-                    <div class="col"><button type="button" class="btn btn-primary float-end"
+                    <div class="col"><button type="button" class="btn btn-secondary float-end"
                             id="btnCellValueToggle">show ids</button>
                     </div>
-                    <div class="col"><button type="button" class="btn btn-primary float-end" id="btnFillTable">fill
+                    <div class="col"><button type="button" class="btn btn-primary float-end" id="btnFillFirstTable">fill 1st
                             table</button>
                     </div>
+                    <div class="col"><button type="button" class="btn btn-warning float-end" id="btnFillSecondTable">fill
+                        2nd table</button>
+                </div>
                     <div class="col"><input type="text" placeholder="loop number" class="form-control" value="100"
                             id="inputLoopNumber">
                     </div>
@@ -29,7 +32,9 @@
             </div>
             <div class="col">
                 <div class="row">
-                    <div class="col"><button type="button" class="btn btn-success " id="btnListData">list data</button>
+                    <div class="col"><button type="button" class="btn btn-success " id="btnListFirstData">list 1st data</button>
+                    </div>
+                    <div class="col"><button type="button" class="btn btn-success " id="btnListSecondData">list 2nd data</button>
                     </div>
                     <div class="col"><button type="button" class="btn btn-success " id="btnImportExportData"
                             data-bs-toggle="modal" data-bs-target="#importExportModal">import/export data</button>
@@ -40,7 +45,7 @@
 
 
         <br>
-        <div class="row">
+        <div class="row noPrint">
             <div class="col-2">
                 <div id="loadingText">0</div>
             </div>
@@ -57,7 +62,11 @@
         </div>
         <br>
         <div class="row">
-            <div id="listData"></div>
+            <div id="listFirstData"></div>
+        </div>
+        <br>
+        <div class="row">
+            <div id="listSecondData"></div>
         </div>
     </div>
 
