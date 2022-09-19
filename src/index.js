@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import $ from "jquery";
 import { Modal } from "bootstrap";
 
+let HAUPTPAUSE_BEACHTEN = true;
 let PAUSENZEIT_1 = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"];
 let PAUSENZEIT_2 = ["12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"];
 let PAUSENZEIT_3 = ["24"];
@@ -130,33 +131,266 @@ let FREITAG_2 = ["Fr7", "Fr8", "Fr9", "Fr10", "Fr11", "Fr12"];
 let FREITAG_3 = ["Fr13"];
 
 let TEST_PERSON_DATA = [
-  { name: "Richi", noOptions: [].concat(MONTAG_1, MITTWOCH_2), onlyOptions: [].concat(), jokerOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1 },
-  { name: "Susi", noOptions: [].concat(MONTAG_1), onlyOptions: [].concat(), jokerOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1 },
-  { name: "Kerstin", noOptions: [].concat(MITTWOCH_2), onlyOptions: [].concat(), jokerOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1 },
-  { name: "Andi", noOptions: [].concat(), onlyOptions: [].concat(), jokerOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1 },
-  { name: "Sarah", noOptions: [].concat(MONTAG_1), onlyOptions: [].concat(), jokerOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1 },
-  { name: "Simon", noOptions: ["Mo1", "Mi2"].concat(DONNERSTAG_1), onlyOptions: [].concat(), jokerOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1 },
-  { name: "Gustav", noOptions: [].concat(MONTAG_1), onlyOptions: [].concat(), jokerOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1 },
-  { name: "Gina", noOptions: [].concat(), onlyOptions: [].concat(), jokerOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1 },
-  { name: "Dominik", noOptions: [].concat(DONNERSTAG_1), onlyOptions: [].concat(), jokerOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1 },
-  { name: "Marie", noOptions: [].concat(), onlyOptions: [].concat(), jokerOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1 },
-  { name: "Jojo", noOptions: [].concat(), onlyOptions: ["Mi2", "Do2"].concat(), jokerOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1 },
-
-  { name: "Richi2", noOptions: [].concat(), onlyOptions: [].concat(), jokerOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1 },
-  { name: "Susi2", noOptions: [].concat(), onlyOptions: [].concat(FREITAG_2), jokerOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1 },
-  { name: "Kerstin2", noOptions: [].concat(), onlyOptions: [].concat(), jokerOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1 },
-  { name: "Andi2", noOptions: [].concat(MITTWOCH_3, FREITAG_2), onlyOptions: [].concat(), jokerOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1 },
-  { name: "Sarah2", noOptions: [].concat(), onlyOptions: [].concat(), jokerOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1 },
-  { name: "Simon2", noOptions: [].concat(), onlyOptions: [].concat(), jokerOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1 },
-  { name: "Gustav2", noOptions: [].concat(), onlyOptions: [].concat(), jokerOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1 },
-  { name: "Gina2", noOptions: [].concat(), onlyOptions: [].concat(), jokerOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1 },
-  { name: "Dominik2", noOptions: [].concat(), onlyOptions: [].concat(), jokerOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1 },
-  { name: "Marie2", noOptions: [].concat(), onlyOptions: [].concat(), jokerOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1 },
-  { name: "Jojo2", noOptions: [].concat(), onlyOptions: [].concat(), jokerOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1 },
-
-  //empty
-  { name: "NAME", noOptions: [].concat(), onlyOptions: [].concat(), jokerOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1 },
-  { name: "Richi2000", noOptions: [].concat(MONTAG_1, MONTAG_2, MONTAG_3), onlyOptions: [].concat(MITTWOCH_2, MITTWOCH_3, FREITAG_1), jokerOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1 },
+  //TESTDATA
+  {
+    name: "Marion",
+    noOptions: [].concat(MONTAG_3, DIENSTAG_2, DIENSTAG_3, MITTWOCH_3, FREITAG_2, DONNERSTAG_3),
+    onlyOptions: [].concat(),
+    jokerOptions: [],
+    count: 0,
+    maxCount: 2,
+    days: [],
+    maxPerDay: 1,
+    hauptpause: false,
+  },
+  { name: "Silke ", noOptions: [].concat(DIENSTAG_1, MITTWOCH_3, DONNERSTAG_3), onlyOptions: [].concat(), jokerOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1, hauptpause: false },
+  { name: "Jasminka ", noOptions: [].concat(MITTWOCH_2, MITTWOCH_3, DIENSTAG_3), onlyOptions: [].concat(), jokerOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1, hauptpause: false },
+  {
+    name: "Martin",
+    noOptions: [].concat(MITTWOCH_3, DONNERSTAG_3, FREITAG_2, DIENSTAG_1, DIENSTAG_3),
+    onlyOptions: [].concat(),
+    jokerOptions: [],
+    count: 0,
+    maxCount: 2,
+    days: [],
+    maxPerDay: 1,
+    hauptpause: false,
+  },
+  {
+    name: "Teresa",
+    noOptions: [].concat(DIENSTAG_1, DIENSTAG_2, DIENSTAG_3, FREITAG_1, FREITAG_2),
+    onlyOptions: [].concat(),
+    jokerOptions: [],
+    count: 0,
+    maxCount: 2,
+    days: [],
+    maxPerDay: 1,
+    hauptpause: false,
+  },
+  {
+    name: "Kerstin ",
+    noOptions: [].concat(),
+    onlyOptions: [].concat(MONTAG_1, DIENSTAG_1, FREITAG_1, MONTAG_2, DONNERSTAG_2),
+    jokerOptions: [],
+    count: 0,
+    maxCount: 1,
+    days: [],
+    maxPerDay: 1,
+    hauptpause: false,
+  },
+  {
+    name: "Iris ",
+    noOptions: [].concat(MONTAG_3, DIENSTAG_3, MITTWOCH_1, FREITAG_1, FREITAG_2),
+    onlyOptions: [].concat(),
+    jokerOptions: [],
+    count: 0,
+    maxCount: 2,
+    days: [],
+    maxPerDay: 1,
+    hauptpause: false,
+  },
+  { name: "Julian", noOptions: [].concat(FREITAG_1, FREITAG_2), onlyOptions: [].concat(), jokerOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1, hauptpause: false },
+  { name: "Johanna", noOptions: [].concat(MONTAG_1, MONTAG_2, FREITAG_1), onlyOptions: [].concat(), jokerOptions: [], count: 0, maxCount: 1, days: [], maxPerDay: 1, hauptpause: false },
+  { name: "Christi ", noOptions: [].concat(MITTWOCH_1, MITTWOCH_2, MITTWOCH_3), onlyOptions: [].concat(), jokerOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1, hauptpause: false },
+  { name: "Fabian", noOptions: [].concat(MITTWOCH_1, DONNERSTAG_1), onlyOptions: [].concat(), jokerOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1, hauptpause: false },
+  {
+    name: "Nina ",
+    noOptions: [].concat(MONTAG_2, MITTWOCH_2, MITTWOCH_3, DONNERSTAG_3, FREITAG_1),
+    onlyOptions: [].concat(),
+    jokerOptions: [],
+    count: 0,
+    maxCount: 2,
+    days: [],
+    maxPerDay: 1,
+    hauptpause: false,
+  },
+  {
+    name: "Dorothea",
+    noOptions: [].concat(MITTWOCH_2, MITTWOCH_3, DONNERSTAG_2, DONNERSTAG_3, MONTAG_3, DIENSTAG_3),
+    onlyOptions: [].concat(),
+    jokerOptions: [],
+    count: 0,
+    maxCount: 2,
+    days: [],
+    maxPerDay: 1,
+    hauptpause: false,
+  },
+  { name: "Lisa", noOptions: [].concat(), onlyOptions: [].concat(FREITAG_2, MONTAG_1), jokerOptions: [], count: 0, maxCount: 1, days: [], maxPerDay: 1, hauptpause: false },
+  {
+    name: "Tobias",
+    noOptions: [].concat(FREITAG_1, MONTAG_3, DIENSTAG_3, MITTWOCH_3, DONNERSTAG_3),
+    onlyOptions: [].concat(),
+    jokerOptions: [],
+    count: 0,
+    maxCount: 2,
+    days: [],
+    maxPerDay: 1,
+    hauptpause: false,
+  },
+  {
+    name: "Vroni ",
+    noOptions: [].concat(MONTAG_1, MONTAG_2, MONTAG_3, DIENSTAG_1, DIENSTAG_2, DIENSTAG_3),
+    onlyOptions: [].concat(),
+    jokerOptions: [],
+    count: 0,
+    maxCount: 2,
+    days: [],
+    maxPerDay: 1,
+    hauptpause: false,
+  },
+  {
+    name: "Catrin ",
+    noOptions: [].concat(MONTAG_1, MONTAG_2, MONTAG_3, MITTWOCH_1, MITTWOCH_2, FREITAG_1, FREITAG_2),
+    onlyOptions: [].concat(),
+    jokerOptions: [],
+    count: 0,
+    maxCount: 2,
+    days: [],
+    maxPerDay: 1,
+    hauptpause: false,
+  },
+  {
+    name: "Maxi",
+    noOptions: [].concat(DIENSTAG_1, DIENSTAG_2, DIENSTAG_3, FREITAG_1, FREITAG_2, MONTAG_1),
+    onlyOptions: [].concat(),
+    jokerOptions: [],
+    count: 0,
+    maxCount: 1,
+    days: [],
+    maxPerDay: 1,
+    hauptpause: false,
+  },
+  {
+    name: "Melanie",
+    noOptions: [].concat(FREITAG_1, FREITAG_2, MONTAG_3, DONNERSTAG_3, MITTWOCH_2),
+    onlyOptions: [].concat(),
+    jokerOptions: [],
+    count: 0,
+    maxCount: 2,
+    days: [],
+    maxPerDay: 1,
+    hauptpause: false,
+  },
+  { name: "Elena", noOptions: [].concat(), onlyOptions: [].concat(MITTWOCH_1, MITTWOCH_2), jokerOptions: [], count: 0, maxCount: 1, days: [], maxPerDay: 1, hauptpause: false },
+  {
+    name: "Andre",
+    noOptions: [].concat(MONTAG_1, MONTAG_2, MONTAG_3, DIENSTAG_3, MITTWOCH_3, DONNERSTAG_3, FREITAG_1, FREITAG_2),
+    onlyOptions: [].concat(),
+    jokerOptions: [],
+    count: 0,
+    maxCount: 1,
+    days: [],
+    maxPerDay: 1,
+    hauptpause: false,
+  },
+  {
+    name: "Yunus",
+    noOptions: [].concat(MONTAG_3, MITTWOCH_3, DONNERSTAG_3, FREITAG_2, FREITAG_1, MITTWOCH_2, DIENSTAG_1, DIENSTAG_3, DIENSTAG_2),
+    onlyOptions: [].concat(),
+    jokerOptions: [],
+    count: 0,
+    maxCount: 2,
+    days: [],
+    maxPerDay: 1,
+    hauptpause: false,
+  },
+  {
+    name: "Babsi",
+    noOptions: [].concat(),
+    onlyOptions: [].concat(MONTAG_1, DIENSTAG_1, DONNERSTAG_1, FREITAG_1, FREITAG_2),
+    jokerOptions: [],
+    count: 0,
+    maxCount: 2,
+    days: [],
+    maxPerDay: 1,
+    hauptpause: false,
+  },
+  { name: "Andreas ", noOptions: [].concat(MITTWOCH_1, DIENSTAG_2), onlyOptions: [].concat(), jokerOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1, hauptpause: false },
+  { name: "Florian ", noOptions: [].concat(), onlyOptions: [].concat(MONTAG_1, MONTAG_2, MONTAG_3, MITTWOCH_1), jokerOptions: [], count: 0, maxCount: 1, days: [], maxPerDay: 1, hauptpause: false },
+  { name: "Julia", noOptions: [].concat(MONTAG_1, DIENSTAG_2, DONNERSTAG_1), onlyOptions: [].concat(), jokerOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1, hauptpause: false },
+  {
+    name: "Alexander",
+    noOptions: [].concat(DIENSTAG_1, DIENSTAG_3, DIENSTAG_2, MITTWOCH_1, MITTWOCH_2, MITTWOCH_3, DONNERSTAG_3, MONTAG_1, DONNERSTAG_2),
+    onlyOptions: [].concat(),
+    jokerOptions: [],
+    count: 0,
+    maxCount: 1,
+    days: [],
+    maxPerDay: 1,
+    hauptpause: false,
+  },
+  { name: "Mathias ", noOptions: [].concat(MONTAG_1), onlyOptions: [].concat(), jokerOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1, hauptpause: false },
+  {
+    name: "Thomas",
+    noOptions: [].concat(),
+    onlyOptions: [].concat(MONTAG_3, MITTWOCH_1, MITTWOCH_2, DONNERSTAG_2, DONNERSTAG_3),
+    jokerOptions: [],
+    count: 0,
+    maxCount: 1,
+    days: [],
+    maxPerDay: 1,
+    hauptpause: false,
+  },
+  { name: "Henriette", noOptions: [].concat(), onlyOptions: [].concat(DONNERSTAG_1, DONNERSTAG_2, MITTWOCH_1), jokerOptions: [], count: 0, maxCount: 1, days: [], maxPerDay: 1, hauptpause: false },
+  { name: "Marcel", noOptions: [].concat(), onlyOptions: [].concat(MITTWOCH_2, FREITAG_1, MITTWOCH_1), jokerOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1, hauptpause: false },
+  { name: "Barbara", noOptions: [].concat(), onlyOptions: [].concat(MONTAG_2, DIENSTAG_2), jokerOptions: [], count: 0, maxCount: 1, days: [], maxPerDay: 1, hauptpause: false },
+  {
+    name: "Katharina",
+    noOptions: [].concat(MONTAG_2, MONTAG_3, DIENSTAG_3, MITTWOCH_1, MITTWOCH_3, FREITAG_1),
+    onlyOptions: [].concat(),
+    jokerOptions: [],
+    count: 0,
+    maxCount: 2,
+    days: [],
+    maxPerDay: 1,
+    hauptpause: false,
+  },
+  {
+    name: "Susan ",
+    noOptions: [].concat(MONTAG_3, MITTWOCH_1, MITTWOCH_2, MITTWOCH_3, FREITAG_2, DONNERSTAG_3, DONNERSTAG_2),
+    onlyOptions: [].concat(),
+    jokerOptions: [],
+    count: 0,
+    maxCount: 2,
+    days: [],
+    maxPerDay: 1,
+    hauptpause: false,
+  },
+  {
+    name: "Sabine ",
+    noOptions: [].concat(MONTAG_1, MONTAG_2, MONTAG_3, DIENSTAG_3, MITTWOCH_1, DONNERSTAG_3, FREITAG_1, FREITAG_2, MITTWOCH_2),
+    onlyOptions: [].concat(),
+    jokerOptions: [],
+    count: 0,
+    maxCount: 2,
+    days: [],
+    maxPerDay: 1,
+    hauptpause: false,
+  },
+  {
+    name: "Patrick ",
+    noOptions: [].concat(MONTAG_3, DIENSTAG_3, MITTWOCH_3, DONNERSTAG_3),
+    onlyOptions: [].concat(),
+    jokerOptions: [],
+    count: 0,
+    maxCount: 2,
+    days: [],
+    maxPerDay: 1,
+    hauptpause: false,
+  },
+  { name: "Olga", noOptions: [].concat(), onlyOptions: [].concat(DIENSTAG_1, MONTAG_1, MONTAG_2, MONTAG_3), jokerOptions: [], count: 0, maxCount: 1, days: [], maxPerDay: 1, hauptpause: false },
+  {
+    name: "Olesia",
+    noOptions: [].concat(MONTAG_1, MONTAG_2, MONTAG_3, DIENSTAG_1, DIENSTAG_2, DIENSTAG_3, DONNERSTAG_1, FREITAG_1),
+    onlyOptions: [].concat(),
+    jokerOptions: [],
+    count: 0,
+    maxCount: 1,
+    days: [],
+    maxPerDay: 1,
+    hauptpause: false,
+  },
+  { name: "Susanne", noOptions: [].concat(), onlyOptions: [].concat(FREITAG_1, MONTAG_1), jokerOptions: [], count: 0, maxCount: 1, days: [], maxPerDay: 1, hauptpause: false },
 ];
 
 let UPDATED_TEST_PERSON_DATA = [];
@@ -172,17 +406,17 @@ let TABLE_DATA = {
     { values: ["Eingang", "", "", "", "", ""], type: "cell", style: "" },
     { values: ["(Eingang Vertretung)", "", "", "", "", ""], type: "vert", style: "cellGrey" },
 
-    { values: ["Hartplatz", "", "", "", "", ""], type: "cell", style: "" },
-    { values: ["(Hartplatz Vertretung)", "", "", "", "", ""], type: "vert", style: "cellGrey" },
-
-    { values: ["Hinter der Hecke", "", "", "", "", ""], type: "cell", style: "" },
-    { values: ["(Hinter der Hecke Vertretung)", "", "", "", "", ""], type: "vert", style: "cellGrey" },
-
     { values: ["Vor Mensaeingang", "", "", "", "", ""], type: "cell", style: "" },
     { values: ["(Vor Mensaeingang Vertretung)", "", "", "", "", ""], type: "vert", style: "cellGrey" },
 
     { values: ["Mensa", "", "", "", "", ""], type: "cell", style: "" },
     { values: ["(Mensa Vertretung)", "", "", "", "", ""], type: "vert", style: "cellGrey" },
+
+    { values: ["Hartplatz", "", "", "", "", ""], type: "cell", style: "" },
+    { values: ["(Hartplatz Vertretung)", "", "", "", "", ""], type: "vert", style: "cellGrey" },
+
+    { values: ["Hinter der Hecke", "", "", "", "", ""], type: "cell", style: "" },
+    { values: ["(Hinter der Hecke Vertretung)", "", "", "", "", ""], type: "vert", style: "cellGrey" },
 
     /////////////////////////// 2. Pause ///////////////////////////
     { values: ["2. Pause", "Mo", "Di", "Mi", "Do", "Fr"], type: "header", style: "cellBold" },
@@ -193,17 +427,17 @@ let TABLE_DATA = {
     { values: ["Eingang", "", "", "", "", ""], type: "cell", style: "" },
     { values: ["(Eingang Vertretung)", "", "", "", "", ""], type: "vert", style: "cellGrey" },
 
-    { values: ["Hartplatz", "", "", "", "", ""], type: "cell", style: "" },
-    { values: ["(Hartplatz Vertretung)", "", "", "", "", ""], type: "vert", style: "cellGrey" },
-
-    { values: ["Hinter der Hecke", "", "", "", "", ""], type: "cell", style: "" },
-    { values: ["(Hinter der Hecke Vertretung)", "", "", "", "", ""], type: "vert", style: "cellGrey" },
-
     { values: ["Vor Mensaeingang", "", "", "", "", ""], type: "cell", style: "" },
     { values: ["(Vor Mensaeingang Vertretung)", "", "", "", "", ""], type: "vert", style: "cellGrey" },
 
     { values: ["Mensa", "", "", "", "", ""], type: "cell", style: "" },
     { values: ["(Mensa Vertretung)", "", "", "", "", ""], type: "vert", style: "cellGrey" },
+
+    { values: ["Hartplatz", "", "", "", "", ""], type: "cell", style: "" },
+    { values: ["(Hartplatz Vertretung)", "", "", "", "", ""], type: "vert", style: "cellGrey" },
+
+    { values: ["Hinter der Hecke", "", "", "", "", ""], type: "cell", style: "" },
+    { values: ["(Hinter der Hecke Vertretung)", "", "", "", "", ""], type: "vert", style: "cellGrey" },
 
     /////////////////////////// 3. Pause ///////////////////////////
     { values: ["3. Pause", "Mo", "Di", "Mi", "Do", "Fr"], type: "header", style: "cellBold" },
@@ -724,23 +958,28 @@ function autoFillFirstTableMeta(cellArray, dataPersons) {
       dataPersonsCopy.forEach((person) => {
         //check 2) is no person already added to cell && is person maxCount < count && person is not > maxPerDay in column
         if (!personAddedToCell && person.count < person.maxCount && !(countDayColumns(person.days, cell.column) >= person.maxPerDay)) {
-          let noOptionArray = person.noOptions.map((noOption) => "cell_" + DAY_TO_CELL_MAP[noOption]);
-          let onlyOptionArray = person.onlyOptions.map((onlyOption) => "cell_" + DAY_TO_CELL_MAP[onlyOption]);
+          //check 2.1) hauptpause
+          if (!HAUPTPAUSE_BEACHTEN || !isHauptpause(cell) || (isHauptpause(cell) && !person.hauptpause)) {
+            let noOptionArray = person.noOptions.map((noOption) => "cell_" + DAY_TO_CELL_MAP[noOption]);
+            let onlyOptionArray = person.onlyOptions.map((onlyOption) => "cell_" + DAY_TO_CELL_MAP[onlyOption]);
 
-          //check 3) can person be in cell based on noOption?
-          if (onlyOptionArray.length > 0) {
-            if (onlyOptionArray.includes(cell.id)) {
+            //check 3) can person be in cell based on noOption?
+            if (onlyOptionArray.length > 0) {
+              if (onlyOptionArray.includes(cell.id)) {
+                cell.value = person.name;
+                person.count = person.count + 1;
+                person.days.push(cell.row + "_" + cell.column);
+                personAddedToCell = true;
+                if (isHauptpause(cell)) person.hauptpause = true;
+              }
+            } else if (!noOptionArray.includes(cell.id)) {
+              //add person to cell
               cell.value = person.name;
               person.count = person.count + 1;
               person.days.push(cell.row + "_" + cell.column);
               personAddedToCell = true;
+              if (isHauptpause(cell)) person.hauptpause = true;
             }
-          } else if (!noOptionArray.includes(cell.id)) {
-            //add person to cell
-            cell.value = person.name;
-            person.count = person.count + 1;
-            person.days.push(cell.row + "_" + cell.column);
-            personAddedToCell = true;
           }
         }
       });
@@ -748,6 +987,11 @@ function autoFillFirstTableMeta(cellArray, dataPersons) {
   });
 
   return allMetaTableCells;
+}
+
+function isHauptpause(cell) {
+  if (PAUSENZEIT_2.includes(cell.row)) return true;
+  else return false;
 }
 
 //fill second table
