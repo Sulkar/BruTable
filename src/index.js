@@ -113,39 +113,39 @@ function convertDayToCellMapToDayToVertMap() {
  * 2. Pause: 7-12
  * 3. Pause: 13
  */
-let MONTAG1 = ["Mo1", "Mo2", "Mo3", "Mo4", "Mo5", "Mo6"];
-let MONTAG2 = ["Mo7", "Mo8", "Mo9", "Mo10", "Mo11", "Mo12"];
-let MONTAG3 = ["Mo13"];
-let DIENSTAG1 = ["Di1", "Di2", "Di3", "Di4", "Di5", "Di6"];
-let DIENSTAG2 = ["Di7", "Di8", "Di9", "Di10", "Di11", "Di12"];
-let DIENSTAG3 = ["Di13"];
-let MITTWOCH1 = ["Mi1", "Mi2", "Mi3", "Mi4", "Mi5", "Mi6"];
-let MITTWOCH2 = ["Mi7", "Mi8", "Mi9", "Mi10", "Mi11", "Mi12"];
-let MITTWOCH3 = ["Mi13"];
-let DONNERSTAG1 = ["Do1", "Do2", "Do3", "Do4", "Do5", "Do6"];
-let DONNERSTAG2 = ["Do7", "Do8", "Do9", "Do10", "Do11", "Do12"];
-let DONNERSTAG3 = ["Do13"];
-let FREITAG1 = ["Fr1", "Fr2", "Fr3", "Fr4", "Fr5", "Fr6"];
-let FREITAG2 = ["Fr7", "Fr8", "Fr9", "Fr10", "Fr11", "Fr12"];
-let FREITAG3 = ["Fr13"];
+let MONTAG_1 = ["Mo1", "Mo2", "Mo3", "Mo4", "Mo5", "Mo6"];
+let MONTAG_2 = ["Mo7", "Mo8", "Mo9", "Mo10", "Mo11", "Mo12"];
+let MONTAG_3 = ["Mo13"];
+let DIENSTAG_1 = ["Di1", "Di2", "Di3", "Di4", "Di5", "Di6"];
+let DIENSTAG_2 = ["Di7", "Di8", "Di9", "Di10", "Di11", "Di12"];
+let DIENSTAG_3 = ["Di13"];
+let MITTWOCH_1 = ["Mi1", "Mi2", "Mi3", "Mi4", "Mi5", "Mi6"];
+let MITTWOCH_2 = ["Mi7", "Mi8", "Mi9", "Mi10", "Mi11", "Mi12"];
+let MITTWOCH_3 = ["Mi13"];
+let DONNERSTAG_1 = ["Do1", "Do2", "Do3", "Do4", "Do5", "Do6"];
+let DONNERSTAG_2 = ["Do7", "Do8", "Do9", "Do10", "Do11", "Do12"];
+let DONNERSTAG_3 = ["Do13"];
+let FREITAG_1 = ["Fr1", "Fr2", "Fr3", "Fr4", "Fr5", "Fr6"];
+let FREITAG_2 = ["Fr7", "Fr8", "Fr9", "Fr10", "Fr11", "Fr12"];
+let FREITAG_3 = ["Fr13"];
 
 let TEST_PERSON_DATA = [
-  { name: "Richi", noOptions: [].concat(MONTAG1, MITTWOCH2), onlyOptions: [].concat(), jokerOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1 },
-  { name: "Susi", noOptions: [].concat(MONTAG1), onlyOptions: [].concat(), jokerOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1 },
-  { name: "Kerstin", noOptions: [].concat(MITTWOCH2), onlyOptions: [].concat(), jokerOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1 },
+  { name: "Richi", noOptions: [].concat(MONTAG_1, MITTWOCH_2), onlyOptions: [].concat(), jokerOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1 },
+  { name: "Susi", noOptions: [].concat(MONTAG_1), onlyOptions: [].concat(), jokerOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1 },
+  { name: "Kerstin", noOptions: [].concat(MITTWOCH_2), onlyOptions: [].concat(), jokerOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1 },
   { name: "Andi", noOptions: [].concat(), onlyOptions: [].concat(), jokerOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1 },
-  { name: "Sarah", noOptions: [].concat(MONTAG1), onlyOptions: [].concat(), jokerOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1 },
-  { name: "Simon", noOptions: ["Mo1", "Mi2"].concat(DONNERSTAG1), onlyOptions: [].concat(), jokerOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1 },
-  { name: "Gustav", noOptions: [].concat(MONTAG1), onlyOptions: [].concat(), jokerOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1 },
+  { name: "Sarah", noOptions: [].concat(MONTAG_1), onlyOptions: [].concat(), jokerOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1 },
+  { name: "Simon", noOptions: ["Mo1", "Mi2"].concat(DONNERSTAG_1), onlyOptions: [].concat(), jokerOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1 },
+  { name: "Gustav", noOptions: [].concat(MONTAG_1), onlyOptions: [].concat(), jokerOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1 },
   { name: "Gina", noOptions: [].concat(), onlyOptions: [].concat(), jokerOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1 },
-  { name: "Dominik", noOptions: [].concat(DONNERSTAG1), onlyOptions: [].concat(), jokerOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1 },
+  { name: "Dominik", noOptions: [].concat(DONNERSTAG_1), onlyOptions: [].concat(), jokerOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1 },
   { name: "Marie", noOptions: [].concat(), onlyOptions: [].concat(), jokerOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1 },
   { name: "Jojo", noOptions: [].concat(), onlyOptions: ["Mi2", "Do2"].concat(), jokerOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1 },
 
   { name: "Richi2", noOptions: [].concat(), onlyOptions: [].concat(), jokerOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1 },
-  { name: "Susi2", noOptions: [].concat(), onlyOptions: [].concat(FREITAG2), jokerOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1 },
+  { name: "Susi2", noOptions: [].concat(), onlyOptions: [].concat(FREITAG_2), jokerOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1 },
   { name: "Kerstin2", noOptions: [].concat(), onlyOptions: [].concat(), jokerOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1 },
-  { name: "Andi2", noOptions: [].concat(MITTWOCH3, FREITAG2), onlyOptions: [].concat(), jokerOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1 },
+  { name: "Andi2", noOptions: [].concat(MITTWOCH_3, FREITAG_2), onlyOptions: [].concat(), jokerOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1 },
   { name: "Sarah2", noOptions: [].concat(), onlyOptions: [].concat(), jokerOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1 },
   { name: "Simon2", noOptions: [].concat(), onlyOptions: [].concat(), jokerOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1 },
   { name: "Gustav2", noOptions: [].concat(), onlyOptions: [].concat(), jokerOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1 },
@@ -153,6 +153,10 @@ let TEST_PERSON_DATA = [
   { name: "Dominik2", noOptions: [].concat(), onlyOptions: [].concat(), jokerOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1 },
   { name: "Marie2", noOptions: [].concat(), onlyOptions: [].concat(), jokerOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1 },
   { name: "Jojo2", noOptions: [].concat(), onlyOptions: [].concat(), jokerOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1 },
+
+  //empty
+  { name: "NAME", noOptions: [].concat(), onlyOptions: [].concat(), jokerOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1 },
+  { name: "Richi2000", noOptions: [].concat(MONTAG_1, MONTAG_2, MONTAG_3), onlyOptions: [].concat(MITTWOCH_2, MITTWOCH_3, FREITAG_1), jokerOptions: [], count: 0, maxCount: 2, days: [], maxPerDay: 1 },
 ];
 
 let UPDATED_TEST_PERSON_DATA = [];
@@ -253,7 +257,7 @@ const copyToClipboardAsync = (str) => {
 };
 
 $("#btnImportExportData").on("click", function () {
-  const currentCellValuesJSON = JSON.stringify(BEST_ATTEMPT.cellArray);
+  const currentCellValuesJSON = JSON.stringify(createMetaDataCellsArray(["cell", "vert"]));
   $("#textareaImportExportModal").val(currentCellValuesJSON);
 });
 //btn modal load data
@@ -262,6 +266,7 @@ $("#btnImportExportModalLoadData").on("click", function () {
   const currentCellValues = JSON.parse(currentTextareaValue);
   fillTableWithCellArray(currentCellValues);
   highlightAllEmptyTableCells(["cell"]);
+  $("#txtEmptyCells").text("empty cells: " + countAllEmptyTableCells());
 });
 
 //{ name: "Jojo", noOptions: [], onlyOptions: ["Mi1"], count: 0, maxCount: 2, days: [], maxPerDay: 1 },
@@ -333,7 +338,7 @@ function startFillFirstTable() {
   $("#app").html(createTable(TABLE_DATA));
 
   // {cell: "cell_1_1", value: "Richi", column: 1}
-  META_DATA_CELLS_ARRAY = createMetaDataCellsArray("cell");
+  META_DATA_CELLS_ARRAY = createMetaDataCellsArray(["cell"]);
 
   //execution start
   const startTime = Date.now();
@@ -353,6 +358,7 @@ function startFillFirstTable() {
     console.log("Runs: " + COUNTER);
     console.log("Empty Cells: " + BEST_ATTEMPT.emptyCells);
     console.log("Execution time: " + executionTime + "ms");
+    $("#txtEmptyCells").text("empty cells: " + countAllEmptyTableCells());
   });
 }
 
@@ -361,7 +367,7 @@ function startFillSecondTable() {
   clearTableCells("vert");
 
   // {cell: "cell_1_1", value: "Richi", column: 1}
-  META_DATA_CELLS_ARRAY = createMetaDataCellsArray("vert");
+  META_DATA_CELLS_ARRAY = createMetaDataCellsArray(["vert"]);
   //execution start
   const startTime = Date.now();
   BEST_ATTEMPT = { cellArray: [], emptyCells: undefined };
@@ -380,6 +386,7 @@ function startFillSecondTable() {
     console.log("Runs: " + COUNTER);
     console.log("Empty Cells: " + BEST_ATTEMPT.emptyCells);
     console.log("Execution time: " + executionTime + "ms");
+    $("#txtEmptyCells").text("empty cells: " + countAllEmptyTableCells());
   });
 }
 
@@ -448,11 +455,14 @@ function createListDataTable(data, title) {
   tempTable += "</thead>";
   tempTable += "<tbody>";
   //body
-  let counter = 1;
+  let personCounter = 1;
+  let aufsichtCounter = 0;
+  let aufsichtMaxCounter = 0;
+
   data.forEach((row, indexRow) => {
     tempTable += "<tr>";
 
-    tempTable += "<td class=''>" + counter + ". " + row.name + "</td>";
+    tempTable += "<td class=''>" + personCounter + ". " + row.name + "</td>";
 
     let tempNoOptionString = createOptionString(row.noOptions);
 
@@ -465,15 +475,17 @@ function createListDataTable(data, title) {
     } else {
       tempTable += "<td class=''>" + row.count + "</td>";
     }
-
     tempTable += "<td class=''>" + row.maxCount + "</td>";
-
     tempTable += "<td class=''>" + row.days.map((day) => " " + tempNrToDayMap[day.split("_")[1]]).toString() + "</td>";
     tempTable += "<td class=''>" + row.maxPerDay + "</td>";
     tempTable += "</tr>";
-    counter++;
+
+    personCounter++;
+    aufsichtCounter += row.count;
+    aufsichtMaxCounter += row.maxCount;
   });
 
+  tempTable += "<tr> <td></td> <td></td> <td></td> <td class='summary'>" + aufsichtCounter + "</td> <td class='summary'>" + aufsichtMaxCounter + "</td>  <td></td> <td></td> </tr>";
   tempTable += "</tbody>";
   tempTable += "</table>";
   return tempHeader + tempTable;
@@ -482,97 +494,97 @@ function createListDataTable(data, title) {
 function createOptionString(optionsArray) {
   let tempNoOptionString = optionsArray;
   //Montag
-  if (checkIfArrayContainsAllValues(tempNoOptionString, MONTAG1)) {
+  if (checkIfArrayContainsAllValues(tempNoOptionString, MONTAG_1)) {
     tempNoOptionString = tempNoOptionString.filter(function (option) {
-      return !MONTAG1.includes(option);
+      return !MONTAG_1.includes(option);
     });
     tempNoOptionString.push("MO (1. Pause)");
   }
-  if (checkIfArrayContainsAllValues(tempNoOptionString, MONTAG2)) {
+  if (checkIfArrayContainsAllValues(tempNoOptionString, MONTAG_2)) {
     tempNoOptionString = tempNoOptionString.filter(function (option) {
-      return !MONTAG2.includes(option);
+      return !MONTAG_2.includes(option);
     });
     tempNoOptionString.push("MO (2. Pause)");
   }
-  if (checkIfArrayContainsAllValues(tempNoOptionString, MONTAG3)) {
+  if (checkIfArrayContainsAllValues(tempNoOptionString, MONTAG_3)) {
     tempNoOptionString = tempNoOptionString.filter(function (option) {
-      return !MONTAG3.includes(option);
+      return !MONTAG_3.includes(option);
     });
     tempNoOptionString.push("MO (3. Pause)");
   }
   //Dienstag
-  if (checkIfArrayContainsAllValues(tempNoOptionString, DIENSTAG1)) {
+  if (checkIfArrayContainsAllValues(tempNoOptionString, DIENSTAG_1)) {
     tempNoOptionString = tempNoOptionString.filter(function (option) {
-      return !DIENSTAG1.includes(option);
+      return !DIENSTAG_1.includes(option);
     });
     tempNoOptionString.push("DI (1. Pause)");
   }
-  if (checkIfArrayContainsAllValues(tempNoOptionString, DIENSTAG2)) {
+  if (checkIfArrayContainsAllValues(tempNoOptionString, DIENSTAG_2)) {
     tempNoOptionString = tempNoOptionString.filter(function (option) {
-      return !DIENSTAG2.includes(option);
+      return !DIENSTAG_2.includes(option);
     });
     tempNoOptionString.push("DI (2. Pause)");
   }
-  if (checkIfArrayContainsAllValues(tempNoOptionString, DIENSTAG3)) {
+  if (checkIfArrayContainsAllValues(tempNoOptionString, DIENSTAG_3)) {
     tempNoOptionString = tempNoOptionString.filter(function (option) {
-      return !DIENSTAG3.includes(option);
+      return !DIENSTAG_3.includes(option);
     });
     tempNoOptionString.push("DI (3. Pause)");
   }
   //Mittwoch
-  if (checkIfArrayContainsAllValues(tempNoOptionString, MITTWOCH1)) {
+  if (checkIfArrayContainsAllValues(tempNoOptionString, MITTWOCH_1)) {
     tempNoOptionString = tempNoOptionString.filter(function (option) {
-      return !MITTWOCH1.includes(option);
+      return !MITTWOCH_1.includes(option);
     });
     tempNoOptionString.push("MI (1. Pause)");
   }
-  if (checkIfArrayContainsAllValues(tempNoOptionString, MITTWOCH2)) {
+  if (checkIfArrayContainsAllValues(tempNoOptionString, MITTWOCH_2)) {
     tempNoOptionString = tempNoOptionString.filter(function (option) {
-      return !MITTWOCH2.includes(option);
+      return !MITTWOCH_2.includes(option);
     });
     tempNoOptionString.push("MI (2. Pause)");
   }
-  if (checkIfArrayContainsAllValues(tempNoOptionString, MITTWOCH3)) {
+  if (checkIfArrayContainsAllValues(tempNoOptionString, MITTWOCH_3)) {
     tempNoOptionString = tempNoOptionString.filter(function (option) {
-      return !MITTWOCH3.includes(option);
+      return !MITTWOCH_3.includes(option);
     });
     tempNoOptionString.push("MI (3. Pause)");
   }
   //Donnerstag
-  if (checkIfArrayContainsAllValues(tempNoOptionString, DONNERSTAG1)) {
+  if (checkIfArrayContainsAllValues(tempNoOptionString, DONNERSTAG_1)) {
     tempNoOptionString = tempNoOptionString.filter(function (option) {
-      return !DONNERSTAG1.includes(option);
+      return !DONNERSTAG_1.includes(option);
     });
     tempNoOptionString.push("DO (1. Pause)");
   }
-  if (checkIfArrayContainsAllValues(tempNoOptionString, DONNERSTAG2)) {
+  if (checkIfArrayContainsAllValues(tempNoOptionString, DONNERSTAG_2)) {
     tempNoOptionString = tempNoOptionString.filter(function (option) {
-      return !DONNERSTAG2.includes(option);
+      return !DONNERSTAG_2.includes(option);
     });
     tempNoOptionString.push("DO (2. Pause)");
   }
-  if (checkIfArrayContainsAllValues(tempNoOptionString, DONNERSTAG3)) {
+  if (checkIfArrayContainsAllValues(tempNoOptionString, DONNERSTAG_3)) {
     tempNoOptionString = tempNoOptionString.filter(function (option) {
-      return !DONNERSTAG3.includes(option);
+      return !DONNERSTAG_3.includes(option);
     });
     tempNoOptionString.push("DO (3. Pause)");
   }
   //Freitag
-  if (checkIfArrayContainsAllValues(tempNoOptionString, FREITAG1)) {
+  if (checkIfArrayContainsAllValues(tempNoOptionString, FREITAG_1)) {
     tempNoOptionString = tempNoOptionString.filter(function (option) {
-      return !FREITAG1.includes(option);
+      return !FREITAG_1.includes(option);
     });
     tempNoOptionString.push("FR (1. Pause)");
   }
-  if (checkIfArrayContainsAllValues(tempNoOptionString, FREITAG2)) {
+  if (checkIfArrayContainsAllValues(tempNoOptionString, FREITAG_2)) {
     tempNoOptionString = tempNoOptionString.filter(function (option) {
-      return !FREITAG2.includes(option);
+      return !FREITAG_2.includes(option);
     });
     tempNoOptionString.push("FR (2. Pause)");
   }
-  if (checkIfArrayContainsAllValues(tempNoOptionString, FREITAG3)) {
+  if (checkIfArrayContainsAllValues(tempNoOptionString, FREITAG_3)) {
     tempNoOptionString = tempNoOptionString.filter(function (option) {
-      return !FREITAG3.includes(option);
+      return !FREITAG_3.includes(option);
     });
     tempNoOptionString.push("FR (3. Pause)");
   }
@@ -603,6 +615,14 @@ function isCellObjectEmpty(cell) {
   }
 }
 
+$("#btnCountEmptyCells").on("click", function () {
+  $("#txtEmptyCells").text("empty cells: " + countAllEmptyTableCells());
+});
+
+function countAllEmptyTableCells() {
+  return getAllEmptyTableCells().length;
+}
+
 function getAllEmptyTableCells() {
   let allEmptyCellArray = [];
   $("#dataTable td").each(function (index) {
@@ -631,10 +651,12 @@ function fillTableWithCellArray(cellArray) {
   });
 }
 
-function createMetaDataCellsArray(type) {
+function createMetaDataCellsArray(typesArray) {
   let metaDataCellsArray = [];
-  $("." + type).each(function () {
-    metaDataCellsArray.push({ id: $(this).attr("id"), value: $(this).text(), row: $(this).attr("id").split("_")[1], column: $(this).attr("id").split("_")[2] }); //cell_2_1
+  typesArray.forEach((type) => {
+    $("." + type).each(function () {
+      metaDataCellsArray.push({ id: $(this).attr("id"), value: $(this).text(), row: $(this).attr("id").split("_")[1], column: $(this).attr("id").split("_")[2] }); //cell_2_1
+    });
   });
   return metaDataCellsArray;
 }

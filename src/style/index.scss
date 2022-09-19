@@ -3,7 +3,8 @@
   background-color: lightgrey !important;
 }
 .cell,
-.firstCol_cell {
+.firstCol_cell,
+.summary {
   font-weight: bold;
 }
 .cellGreen {
@@ -21,4 +22,8 @@
 }
 .highlightCell {
   background-color: lightgreen !important;
+}
+
+table{
+  table-layout: fixed;
 }

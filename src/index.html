@@ -19,12 +19,14 @@
                     <div class="col"><button type="button" class="btn btn-secondary float-end"
                             id="btnCellValueToggle">show ids</button>
                     </div>
-                    <div class="col"><button type="button" class="btn btn-primary float-end" id="btnFillFirstTable">fill 1st
+                    <div class="col"><button type="button" class="btn btn-primary float-end" id="btnFillFirstTable">fill
+                            1st
                             table</button>
                     </div>
-                    <div class="col"><button type="button" class="btn btn-warning float-end" id="btnFillSecondTable">fill
-                        2nd table</button>
-                </div>
+                    <div class="col"><button type="button" class="btn btn-warning float-end"
+                            id="btnFillSecondTable">fill
+                            2nd table</button>
+                    </div>
                     <div class="col"><input type="text" placeholder="loop number" class="form-control" value="100"
                             id="inputLoopNumber">
                     </div>
@@ -32,9 +34,11 @@
             </div>
             <div class="col">
                 <div class="row">
-                    <div class="col"><button type="button" class="btn btn-success " id="btnListFirstData">list 1st data</button>
+                    <div class="col"><button type="button" class="btn btn-success " id="btnListFirstData">list 1st
+                            data</button>
                     </div>
-                    <div class="col"><button type="button" class="btn btn-success " id="btnListSecondData">list 2nd data</button>
+                    <div class="col"><button type="button" class="btn btn-success " id="btnListSecondData">list 2nd
+                            data</button>
                     </div>
                     <div class="col"><button type="button" class="btn btn-success " id="btnImportExportData"
                             data-bs-toggle="modal" data-bs-target="#importExportModal">import/export data</button>
@@ -45,7 +49,7 @@
 
 
         <br>
-        <div class="row noPrint">
+        <div class="row">
             <div class="col-2">
                 <div id="loadingText">0</div>
             </div>
@@ -54,6 +58,12 @@
                     <div id="loadingBar" class="progress-bar" role="progressbar" aria-label="Basic example"
                         aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
+            </div>
+            <div class="col">
+                <div id="txtEmptyCells" class="float-end"></div>
+            </div>
+            <div class="col">
+                <button type="button" class="btn btn-secondary float-end" id="btnCountEmptyCells">count empty cells</button>
             </div>
         </div>
         <br>
@@ -76,17 +86,27 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">import/export data</h5>
+                    <h5 class="modal-title">import/export data </h5>&nbsp; <a
+                        href="https://tools.unsere-schule.org/scriptEdit/" target="_blank"> (ScriptEdit)</a>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <textarea class="form-control" rows="8" placeholder="" id="textareaImportExportModal"></textarea>
                 </div>
                 <div class="modal-footer">
+
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">close</button>
-                    <button type="button" class="btn btn-primary" id="btnImportExportModalDeleteData">delete data</button>
+                    <button type="button" class="btn btn-primary" id="btnImportExportModalDeleteData">delete
+                        data</button>
                     <button type="button" class="btn btn-primary" id="btnImportExportModalCopyData">copy data</button>
-                    <button type="button" class="btn btn-primary" id="btnImportExportModalLoadData" data-bs-dismiss="modal">import data</button>
+                    <button type="button" class="btn btn-primary" id="btnImportExportModalLoadData"
+                        data-bs-dismiss="modal">import data</button>
+
+                    <div class="row">
+                        <div class="col">
+
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
